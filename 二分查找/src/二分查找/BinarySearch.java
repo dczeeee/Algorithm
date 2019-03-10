@@ -16,17 +16,17 @@ public class BinarySearch {
 	}
 
 	static int binarySearch(int[] array,int key) {
-		int from = 0;
-		int to = array.length-1;
-		if(to < 0)
+		int left = 0;
+		int right = array.length-1;
+		if(right < 0)
 			return 0;
-		while(from <= to) {
-			int mid = (from+to)/2;
+		while(left <= right) {
+			int mid = (left+right)/2;
 			int temp = array[mid];
 			if(temp > key)
-				to = mid-1;
+				right = mid-1;
 			else if(temp < key)
-				from = mid+1;
+				left = mid+1;
 			else
 				return mid;
 		}
