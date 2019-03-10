@@ -7,9 +7,10 @@ public class topK {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int[] array = {5,3,8,4,6,9,7,1,2};
-		topk1(array, 5, 0, array.length-1);
+		int k = 5;
+		topk1(array, k, 0, array.length-1);
 		System.out.println();
-		topk2(array, 5);
+		topk2(array, k);
 	}
 	//利用快速排序的特点，一次排序后标识前面的都比它大，后面的都比它小，当标识+1等于k的时候输出前k个
 	public static void topk1(int[] array,int k,int left,int right) {
@@ -71,7 +72,10 @@ public class topK {
 			while(2*k+1 <= lastIndex) {
 				int bigIndex = 2*k+1;
 				if(bigIndex < lastIndex) {
-					bigIndex++;
+					//若右子节点值比左子节点值小，则biggerIndex记录的是右子节点的值  
+					if (array[bigIndex] > array[bigIndex + 1]) {  
+                        bigIndex++;
+					}
 				}
 				if(array[k]>array[bigIndex]) {
 					swap(array,k,bigIndex);
