@@ -18,7 +18,7 @@ public class MergeSort {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] data = {5,3,6,2,1,9,4,8,7};  
+		int[] data = {33,22,18,4,30,29,7,16,9,10};  
         print(data);  
         mergeSort(data);  
         System.out.println("排序后的数组：");  
