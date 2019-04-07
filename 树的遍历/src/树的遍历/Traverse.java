@@ -214,6 +214,60 @@ public class Traverse {
 	    return isSameRec(r1.left, r2.left) && isSameRec(r1.right, r2.right); // 递归遍历左右子节点
 	}
 	
-
-	 
+	/*
+	 * 判断二叉树是不是平衡二叉树
+		递归实现：借助前面实现好的求二叉树高度的函数
+		
+		如果二叉树为空， 返回真
+		如果二叉树不为空，如果左子树和右子树都是AVL树并且左子树和右子树高度相差不大于1，返回真，其他返回假
+	 */
+	public static boolean isAVLTree(TreeNode root) {
+	    if (root == null) {
+	        return true;
+	    }
+	    if (Math.abs(getDepthRec(root.left) - getDepthRec(root.right)) > 1) { // 左右子树高度差大于1
+	        return false;
+	    }
+	    return isAVLTree(root.left) && isAVLTree(root.right); // 递归判断左右子树
+	}
+	
+	/*
+	 * 求二叉树的镜像
+		递归实现：破坏原来的树，把原来的树改成其镜像
+		
+		如果二叉树为空，返回空
+		如果二叉树不为空，求左子树和右子树的镜像，然后交换左右子树
+	 */
+	public static TreeNode mirrorRec(TreeNode root) {
+	    if (root == null) {
+	        return root;
+	    }
+	    TreeNode left = mirrorRec(root.right); // 递归镜像左右子树
+	    TreeNode right = mirrorRec(root.left);
+	    root.left = left; // 更新根节点的左右子树为镜像后的树
+	    root.right = right;
+	    return root;
+	}
+	/*
+	 * 判断两个二叉树是否互相镜像
+		递归解法：与比较两棵二叉树是否相同解法一致（题5），非递归解法省略。
+		
+		比较r1的左子树的镜像是不是r2的右子树
+		比较r1的右子树的镜像是不是r2的左子树
+	 */
+	public static boolean isMirrorRec(TreeNode r1, TreeNode r2) {
+	    if (r1 == null && r2 == null) {
+	        return true;
+	    } else if (r1 == null || r2 == null) {
+	        return false;
+	    }
+	    if (r1.val != r2.val) {
+	        return false;
+	    }
+	    // 递归比较r1的左子树的镜像是不是r2右子树
+	    // 和r1的右子树的镜像是不是r2的左子树
+	    return isMirrorRec(r1.left, r2.right) && isMirrorRec(r1.right, r2.left);
+	}
+	
+	
 }
